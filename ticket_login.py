@@ -136,8 +136,8 @@ def main():
         drop_to_shell()
 
     except ldap.LDAPError as e:
-          if type(e.message) == dict and e.message.has_key('desc'):
-              notify_fail(user, host, details, e.message['desc'])
+        if type(e.message) == dict and e.message.has_key('desc'):
+            notify_fail(user, host, details, e.message['desc'])
         else:
             notify_fail(user, host, details, e)
         drop_to_shell()
