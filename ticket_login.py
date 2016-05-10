@@ -43,12 +43,12 @@ search_root = ''    # The search root for your LDAP lookup; for example: dc=doma
 fail_email  = ''    # Email to notify in case of script failures.
 shell       = ''    # Preferred shell for Linux systems.
 
-pre_cmds    =		# A list of commands to run before dropping to shell. (Optional)
-				[
+pre_cmds    =       # A list of commands to run before dropping to shell. (Optional)
+                [
                 '/bin/echo "Your last login information:"',
                 '/usr/bin/lastlog -u `whoami`',
                 '/bin/cat /etc/motd'
-				]
+                ]
 
 # Don't edit this stuff.
 def send_email(msg):
