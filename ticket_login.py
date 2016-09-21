@@ -25,7 +25,7 @@ except ImportError:
 __author__        = "Justin Vermillion"
 __copyright__     = "Copyright 2016, Synchronoss Technologies, Inc."
 __license__       = "GPL"
-__version__       = "2.13"
+__version__       = "2.5"
 __maintainer__    = "Justin Vermillion"
 __email__         = "justin.vermillion@synchronoss.com"
 __status__        = "Production"
@@ -45,8 +45,9 @@ shell       = ''    # Preferred shell for Linux systems.
 
 # A list of commands to run before dropping to shell. (Optional)
 pre_cmds    = [
-                '/bin/echo "Your last login information:"',
                 '/usr/bin/lastlog -u `whoami`',
+                '/bin/uname -snrm',
+                '/usr/bin/uptime',
                 '/bin/cat /etc/motd'
               ]
 
@@ -113,7 +114,7 @@ def drop_to_shell():
             print "Tried to execute some commands that failed."
             print e
         
-        call(shell)
+        call(getpwuid(os.geteuid()).pw_shell)
     
     sys.exit(0)
 
@@ -122,6 +123,9 @@ def main():
         user = getpwuid(os.geteuid()).pw_name
     else:
         user = getuser()
+
+    if user == 'root' or user == 'Administrator':
+        user = raw_input('Please enter your AD username: ')
 
     details = raw_input('Please enter a justification or ticket number associated with this login.\n> ')
 
