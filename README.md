@@ -19,4 +19,4 @@ ForceCommand /usr/bin/ticket_login.py
 
 Users will be prompted as follows:
 
-![Example Image](https://raw.githubusercontent.com/thevermi/ticket_login/master/xterm-example.png)
+![Example Image](https://github.com/thevermi/ticket_login/blob/master/xterm-example.png?raw=true)
